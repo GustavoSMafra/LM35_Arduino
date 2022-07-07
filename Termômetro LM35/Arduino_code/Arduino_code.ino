@@ -26,6 +26,7 @@ void setup()
   pinMode(8, OUTPUT); //Pino 8 do Arduino ligado ao segmento G
   pinMode(9, OUTPUT); //Pino Multiplexação dezena
   pinMode(10, OUTPUT); //Pino Multiplexação unidade
+  pinMode(11, OUTPUT); //Saída Buzzer
 
   Timer1.initialize(10000); // Em us
   Timer1.attachInterrupt(Display);
@@ -70,6 +71,11 @@ void loop() {
     Serial.println(sensorValue);
     sensorValue *= 100;
     sensorValue /= 1024;
+    if(sensorValue >= 36){
+      digitalWrite(11, HIGH);
+      delay(200);
+      digitalWrite(11, LOW);
+    }
     Serial.println(sensorValue);
     
     count1 = sensorValue/10;
